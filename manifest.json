@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "CBT 誤答ノート — テコプラ・QB",
+  "version": "0.2.0",
+  "description": "テコプラCBT・QB CBTで閲覧した誤答を端末内に保存し、Markdown・JSONで書き出します。",
+  "permissions": ["storage"],
+  "background": {"service_worker": "background.js"},
+  "action": {"default_title": "CBT 誤答ノートを開く"},
+  "content_scripts": [{
+    "matches": ["https://m3e-medical.com/users/cbt/*", "https://cbt.medilink-study.com/*"],
+    "js": ["core.js", "extractor.js", "qb-extractor.js", "content.js"],
+    "run_at": "document_idle"
+  }],
+  "content_security_policy": {"extension_pages": "script-src 'self'; object-src 'none'; base-uri 'none'"}
+}
