@@ -54,16 +54,16 @@
       const s = current();
       if (!s) { host.remove(); return; }
       manualButton.disabled = !s.result;
-      if (!settings.enabled) { show("誤答ノート：自動保存は一時停止中"); return; }
-      if (!s.result) { show("誤答ノート：解答待ち"); return; }
-      if (!s.correct.length) { show("誤答ノート：正答の表示を待っています"); return; }
+      if (!settings.enabled) { show("誤答カルテ：自動保存は一時停止中"); return; }
+      if (!s.result) { show("誤答カルテ：解答待ち"); return; }
+      if (!s.correct.length) { show("誤答カルテ：正答の表示を待っています"); return; }
       const nextSignature = JSON.stringify(s);
       if (nextSignature === signature) return;
       const response = await send({type: "capture", snapshot: s});
       signature = nextSignature;
-      show(response.saved ? `問題 ${s.questionNumber} を保存済み${s.selected.length ? "" : "（自分の回答は取得できず）"}` : "誤答ノート：不正解のときに自動保存");
+      show(response.saved ? `問題 ${s.questionNumber} を保存済み${s.selected.length ? "" : "（自分の回答は取得できず）"}` : "誤答カルテ：不正解のときに自動保存");
     } catch (e) {
-      show(`誤答ノート：${/context invalidated/i.test(e.message) ? "拡張を更新しました。ページを再読み込みしてください。" : e.message}`);
+      show(`誤答カルテ：${/context invalidated/i.test(e.message) ? "拡張を更新しました。ページを再読み込みしてください。" : e.message}`);
     } finally {
       running = false;
       if (again) { again = false; schedule(); }
@@ -87,7 +87,7 @@
       const response = await send({type: "settings"});
       if (JSON.stringify(settings) !== JSON.stringify(response.settings)) signature = "";
       settings = response.settings; schedule();
-    } catch (e) { show(`誤答ノート：${e.message}`); }
+    } catch (e) { show(`誤答カルテ：${e.message}`); }
   }
   new MutationObserver(changes => {
     if (changes.some(c => c.target !== host && !host.contains(c.target))) schedule();

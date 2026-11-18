@@ -49,7 +49,7 @@
   }
   const md = s => String(s || "").replace(/([\\`*_{}\[\]<>])/g, "\\$1");
   function markdown(records) {
-    const lines = ["# CBT 誤答ノート", "", `書き出し日時：${new Date().toLocaleString("ja-JP")}`, `問題数：${records.length}`, "",
+    const lines = ["# 誤答カルテ", "", `書き出し日時：${new Date().toLocaleString("ja-JP")}`, `問題数：${records.length}`, "",
       "画像は参照URLです。画像ファイルそのものは保存していません。", ""];
     records.forEach(r => {
       const unknown = !r.selected?.length;

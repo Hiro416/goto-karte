@@ -100,8 +100,8 @@
     await send({type: "set-settings", settings: {enabled: $("#enabled").checked, includeUncertain: $("#uncertain").checked}});
     announce("設定を保存しました。演習タブに戻ると反映されます。");
   }));
-  $("#markdown").addEventListener("click", safe(async () => { await persistDraft(); filter(); download(`CBT_誤答ノート_${today()}.md`, CBTNotebook.markdown(filtered), "text/markdown;charset=utf-8"); announce("表示中の問題を書き出しました。"); }));
-  $("#backup").addEventListener("click", safe(async () => { await persistDraft(); download(`CBT_誤答ノート_${today()}.json`, JSON.stringify({format: "cbt-notebook", version: 1, exportedAt: new Date().toISOString(), records}, null, 2), "application/json"); announce("全件をJSONに書き出しました。"); }));
+  $("#markdown").addEventListener("click", safe(async () => { await persistDraft(); filter(); download(`誤答カルテ_${today()}.md`, CBTNotebook.markdown(filtered), "text/markdown;charset=utf-8"); announce("表示中の問題を書き出しました。"); }));
+  $("#backup").addEventListener("click", safe(async () => { await persistDraft(); download(`誤答カルテ_${today()}.json`, JSON.stringify({format: "cbt-notebook", version: 1, exportedAt: new Date().toISOString(), records}, null, 2), "application/json"); announce("全件をJSONに書き出しました。"); }));
   $("#restore").addEventListener("change", safe(async event => {
     const file = event.target.files[0]; if (!file) return;
     try {

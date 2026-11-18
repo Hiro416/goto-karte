@@ -1,8 +1,12 @@
 {
-  "name": "cbt-mistake-notebook",
-  "version": "0.2.0",
+  "name": "goto-karte",
+  "version": "0.2.1",
   "private": true,
   "description": "Local-first Chrome extension for a CBT mistake notebook.",
-  "engines": {"node": ">=22"},
-  "scripts": {"test": "node --test tests/core.test.cjs tests/extractor.test.cjs"}
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "node --test tests/core.test.cjs tests/extractor.test.cjs"
+  }
 }
